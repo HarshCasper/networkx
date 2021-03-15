@@ -669,7 +669,6 @@ class TestEdgeView:
         else:
             assert ev & some_edges == {(0, 1), (1, 0)}
             assert some_edges & ev == {(0, 1), (1, 0)}
-        return
 
     def test_or(self):
         # print("G | H edges:", gnv | hnv)
@@ -694,7 +693,6 @@ class TestEdgeView:
             result = {(n, n + 1) for n in range(1, 8)}
             result.update({(0, 2)})
             assert ev ^ some_edges == result
-        return
 
     def test_sub(self):
         # print("G - H edges:", gnv - hnv)

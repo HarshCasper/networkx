@@ -41,7 +41,6 @@ def write_dot(G, path):
     """
     P = to_pydot(G)
     path.write(P.to_string())
-    return
 
 
 @open_file(0, mode="r")

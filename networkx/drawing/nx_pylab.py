@@ -121,7 +121,6 @@ def draw(G, pos=None, ax=None, **kwds):
     draw_networkx(G, pos=pos, ax=ax, **kwds)
     ax.set_axis_off()
     plt.draw_if_interactive()
-    return
 
 
 def draw_networkx(G, pos=None, arrows=True, with_labels=True, **kwds):
