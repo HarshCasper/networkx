@@ -724,7 +724,7 @@ def optimize_edit_paths(
             rind[rind >= k] -= 1
         return rind
 
-    def match_edges(u, v, pending_g, pending_h, Ce, matched_uv=[]):
+    def match_edges(u, v, pending_g, pending_h, Ce, matched_uv=None):
         """
         Parameters:
             u, v: matched vertices, u=None or v=None for
@@ -741,6 +741,8 @@ def optimize_edit_paths(
             localCe: local CostMatrix of edge mappings
                 (basically submatrix of Ce at cross of rows i, cols j)
         """
+        if matched_uv is None:
+            matched_uv = []
         M = len(pending_g)
         N = len(pending_h)
         # assert Ce.C.shape == (M + N, M + N)

@@ -6,7 +6,7 @@ __all__ = ["tree_data", "tree_graph"]
 _attrs = dict(id="id", children="children")
 
 
-def tree_data(G, root, attrs=_attrs):
+def tree_data(G, root, attrs=None):
     """Returns data in tree format that is suitable for JSON serialization
     and use in Javascript documents.
 
@@ -61,6 +61,8 @@ def tree_data(G, root, attrs=_attrs):
     --------
     tree_graph, node_link_data, adjacency_data
     """
+    if attrs is None:
+        attrs = _attrs
     if G.number_of_nodes() != G.number_of_edges() + 1:
         raise TypeError("G is not a tree.")
     if not G.is_directed():
@@ -89,7 +91,7 @@ def tree_data(G, root, attrs=_attrs):
     return data
 
 
-def tree_graph(data, attrs=_attrs):
+def tree_graph(data, attrs=None):
     """Returns graph from tree data format.
 
     Parameters
@@ -121,6 +123,8 @@ def tree_graph(data, attrs=_attrs):
     --------
     tree_data, node_link_data, adjacency_data
     """
+    if attrs is None:
+        attrs = _attrs
     graph = nx.DiGraph()
     id_ = attrs["id"]
     children = attrs["children"]

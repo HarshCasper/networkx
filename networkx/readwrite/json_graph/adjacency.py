@@ -6,7 +6,7 @@ __all__ = ["adjacency_data", "adjacency_graph"]
 _attrs = dict(id="id", key="key")
 
 
-def adjacency_data(G, attrs=_attrs):
+def adjacency_data(G, attrs=None):
     """Returns data in adjacency format that is suitable for JSON serialization
     and use in Javascript documents.
 
@@ -56,6 +56,8 @@ def adjacency_data(G, attrs=_attrs):
     --------
     adjacency_graph, node_link_data, tree_data
     """
+    if attrs is None:
+        attrs = _attrs
     multigraph = G.is_multigraph()
     id_ = attrs["id"]
     # Allow 'key' to be omitted from attrs if the graph is not a multigraph.
@@ -82,7 +84,7 @@ def adjacency_data(G, attrs=_attrs):
     return data
 
 
-def adjacency_graph(data, directed=False, multigraph=True, attrs=_attrs):
+def adjacency_graph(data, directed=False, multigraph=True, attrs=None):
     """Returns graph from adjacency data format.
 
     Parameters
@@ -122,6 +124,8 @@ def adjacency_graph(data, directed=False, multigraph=True, attrs=_attrs):
     --------
     adjacency_graph, node_link_data, tree_data
     """
+    if attrs is None:
+        attrs = _attrs
     multigraph = data.get("multigraph", multigraph)
     directed = data.get("directed", directed)
     if multigraph:
